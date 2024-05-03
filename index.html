@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rudy's threeJS audio visualizer, made with threejs and webGL, where the scene animates as per the beat of audio. Experience immersive audio visualization with cutting-edge web technologies."
+    />
+    <meta
+      name="keywords"
+      content="audio visualizer, threeJS, webGL, Rudy, music visualization, audio animation"
+    />
+    <meta name="author" content="Rudy" />
+    <meta property="og:title" content="Rudy's threeJS Audio Visualizer" />
+    <meta
+      property="og:description"
+      content="Experience immersive audio visualization with Rudy's threeJS audio visualizer, made with threejs and webGL, where the scene animates as per the beat of audio."
+    />
+    <meta property="og:type" content="website" />
+    <title>Rudy's Audio Visualizer | Three.js</title>
+    <link rel="shortcut icon" href="assets/img/2.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <span class="material-symbols-outlined toggle" id="fullscreen-toggle"
+      >fullscreen</span
+    >
+
+    <script>
+      const fullscreenToggle = document.getElementById("fullscreen-toggle");
+      fullscreenToggle.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch((error) => {
+            console.error(
+              "Error attempting to enable full-screen mode:",
+              error
+            );
+          });
+          fullscreenToggle.textContent = "fullscreen_exit";
+        } else {
+          document.exitFullscreen();
+          fullscreenToggle.textContent = "fullscreen";
+        }
+      });
+    </script>
+    <p id="title">Rudy's Audio Visualizer</p>
+    <div class="overlay">
+      <h1><i>Rudy's THREE.JS Audio Visualizer</i></h1>
+      <h2>Enjoy your music!</h2>
+      <h3>Click here to start</h3>
+      <h5>(Drag to move)</h5>
+    </div>
+
+    <button id="change-btn" class="hide">Change Music</button>
+    <button id="choose-music" class="hide">Choose Music</button>
+    <input type="file" id="file-input" accept=".mp3" class="hide" />
+    <canvas class="webgl"></canvas>
+    <audio
+      id="test-song"
+      src="./Music/test-song7.mp3"
+      controls
+      class="hide"
+    ></audio>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"
+      integrity="sha512-LF8ZB1iTwi4Qvkm4pekHG4a437Y9Af5ZuwbnW4GTbAWQeR2E4KW8WF+xH8b9psevV7wIlDMx1MH9YfPqgKhA/Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+      integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+      integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="assets/js/main.js" type="module" defer></script>
+
+    <script>
+      document
+        .getElementById("file-input")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          const audio = document.getElementById("test-song");
+          audio.src = URL.createObjectURL(file);
+          audio.play();
+        });
+
+      // Button click event to trigger file input click
+      document
+        .getElementById("choose-music")
+        .addEventListener("click", function () {
+          document.getElementById("file-input").click();
+        });
+    </script>
+  </body>
+</html>

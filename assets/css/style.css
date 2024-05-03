@@ -1,0 +1,232 @@
+@keyframes lights {
+  0% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+
+  30% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  40% {
+    color: hsla(228, 100%, 50%, 0.493);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 90%, 0.5),
+      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+      0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+  }
+
+  70% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  100% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+}
+
+body {
+  margin: 0;
+  font: 100% / 1.5 Raleway, sans-serif;
+  color: hsl(230, 100%, 95%);
+  background: linear-gradient(135deg, hsl(230, 40%, 12%), hsl(230, 20%, 7%));
+  height: 100vh;
+}
+
+p {
+  margin: auto;
+  font-size: 2.5rem;
+  font-style: italic;
+  font-weight: 300;
+  animation: lights 5s 750ms linear infinite;
+  z-index: 1;
+  top: 4%;
+  left: 50%;
+  white-space: nowrap;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+button {
+  --b: 3px;
+  --s: 0.15em;
+  --c: #0033ac;
+
+  padding: calc(0.05em + var(--s)) calc(0.3em + var(--s));
+  color: var(--c);
+  --_p: var(--s);
+  background: conic-gradient(
+      from 90deg at var(--b) var(--b),
+      #0000 90deg,
+      var(--c) 0
+    )
+    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+    calc(100% - var(--b) - 2 * var(--_p));
+  transition: 0.3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: 0.2em;
+}
+button:hover,
+button:focus-visible {
+  --_p: 0px;
+  outline-color: var(--c);
+  outline-offset: 0.05em;
+}
+button:active {
+  background: var(--c);
+  color: #fff;
+}
+button:hover {
+  color: #ff0000;
+}
+body {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+  place-content: center;
+  background: transparent;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.webgl {
+  position: fixed;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(12, 0, 240, 0.225);
+  color: rgba(255, 255, 255, 0.262);
+  padding: 5em;
+  border-radius: 2%;
+  max-width: fit-content;
+  max-height: fit-content;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+}
+.overlay:hover {
+  border-bottom: whitesmoke 2px solid;
+  border-top: rgb(9, 255, 0) 2px solid;
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.225);
+  box-shadow: 0px 0px 200px 2px cyan;
+}
+
+.overlay > * {
+  margin-top: 0.5em;
+}
+
+.overlay:hover {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+#test-song {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin-bottom: 20px;
+}
+
+#change-btn {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  z-index: 100;
+  padding: 0.5em;
+  font-size: larger;
+  font-weight: 600;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+#choose-music {
+  position: absolute;
+  top: 140px;
+  right: 10px;
+  z-index: 100;
+  padding: 0.5em;
+  font-size: larger;
+  font-weight: 600;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1080px) {
+  #choose-music {
+    top: 90vh;
+  }
+  #change-btn {
+    top: 80vh;
+  }
+  #test-song {
+    top: 70vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #choose-music {
+    top: 85vh;
+  }
+  #change-btn {
+    top: 90vh;
+  }
+  #test-song {
+    top: 70vh;
+  }
+}
+input[type="file"] {
+  display: none;
+}
+
+.toggle {
+  z-index: 1;
+  top: 4%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined", sans-serif;
+  cursor: pointer;
+}
